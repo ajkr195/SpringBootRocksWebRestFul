@@ -1,0 +1,6 @@
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin1@admin1', 'admin1@admin1', 'Jai Bhaarat', 'Kumar', 'admin1@admin1', FALSE, null );
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin2@admin2', 'admin2@admin2', 'Ajay', 'Kumar', 'admin2@admin2', FALSE, null);
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin3@admin3', 'admin3@admin3', 'Akhilesh', 'Kumar', 'admin3@admin3', FALSE, null);
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin4@admin4', 'admin4@admin4', 'Girish', 'Kumar', 'admin4@admin4', FALSE, null);
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin5@admin5', 'admin5@admin5', 'Jagat', 'Kumar', 'admin5@admin5', FALSE, null);
+INSERT INTO app_user (username, useremail, userfirstname, userlastname, useraddress, userenabled, userconfirmationtoken) VALUES ('admin6@admin6', 'admin6@admin6', 'Bhagat', 'Kumar', 'admin6@admin6', FALSE, null);

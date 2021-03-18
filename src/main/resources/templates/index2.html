@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Spring WebFulRestFul</title>
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container-fluid">
+
+
+		<div class="sidenav">
+			<div class="sidelinks sidedwn">
+				<a href="https://github.com/ajkr195/SpringBootRocksWebRestFul"
+					target="_blank">
+					<p class="hidden">Download</p>
+					<span> <i class="fa fa-download"></i></span>
+				</a>
+			</div>
+			<div class="sidegit sidelinks">
+				<a href="https://github.com/ajkr195/SpringBootRocksWebRestFul"
+					target="_blank">
+					<p class="hidden">Github</p> <span> <i class="fab fa-github"></i></span>
+				</a>
+			</div>
+			<div class="sidelinks sidetele">
+				<a href="https://github.com/ajkr195/SpringBootRocksWebRestFul"
+					target="_blank">
+					<p class="hidden">Telegram</p> <span> <i
+						class="fab fa-telegram-plane"></i></span>
+				</a>
+			</div>
+			<div class="sidelinks sidetwit">
+				<a href="https://github.com/ajkr195/SpringBootRocksWebRestFul"
+					target="_blank">
+					<p class="hidden">Twitter</p>
+					<span> <i class="fab fa-twitter"></i></span>
+				</a>
+			</div>
+			<div class="sidelinks sidefb">
+				<a href="https://github.com/ajkr195/SpringBootRocksWebRestFul"
+					target="_blank">
+					<p class="hidden">Facebook</p> <span> <i
+						class="fab fa-facebook-f"></i></span>
+				</a>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="card">
+
+				<div class="card-header text-center text-danger">
+					 <div class="attention-text"><h4>Add/Edit User Form</h4></div>
+				</div>
+
+				<div class="card-body">
+					<form onsubmit="event.preventDefault();onFormSubmit();"
+						autocomplete="off" class="needs-validation mt-4" novalidate>
+						<div class="row mb-3">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Id"
+									aria-label="username" name="userid" id="userid" readonly />
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Username"
+									name="username" id="username" />
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Email"
+									aria-label="useremail" name="useremail" id="useremail">
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="First Name"
+									aria-label="userfirstname" name="userfirstname"
+									id="userfirstname" />
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Last Name"
+									aria-label="userlastname" name="userlastname" id="userlastname" />
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Address"
+									aria-label="useraddress" name="useraddress" id="useraddress" />
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<select class="form-select" name="userenabled" id="userenabled">
+									<option value="true">True</option>
+									<option selected value="false">False</option>
+								</select>
+							</div>
+							<div class="col">
+								<input type="text" class="form-control"
+									placeholder="Confirmation Token"
+									aria-label="userconfirmationtoken" name="userconfirmationtoken"
+									id="userconfirmationtoken">
+							</div>
+						</div>
+						<div class="row mt-4 mb-3">
+							<button class="btn btn-danger fw-bold" id="formsubmitbutton"
+								type="submit">
+								<i class="fas fa-check-double fa-2x"></i> Submit
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row mt-4">
+			<div class="card">
+				<div class="card-header text-center text-danger">
+					<div class="d-flex align-items-center justify-content-between attention-text">
+						<h4 class="float-start">AppUsers</h4>
+
+						<a class="btn btn-danger float-end" href="/" th:href="@{/}">
+							Option1</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="d-flex justify-content-center">
+						<div class="spinner-border" role="status" id="loading">
+							<!--<span class="sr-only">Please wait....</span> -->
+						</div>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-sm" id="appusers"></table>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div id="exampleModal" class="modal fade" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg"
+			role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-primary">
+					<h5 class="modal-title">User Details</h5>
+					<button type="button" class="btn-close close"
+						data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userId">Id :</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userId"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userName">Username
+								:</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userName"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userEmail">Email-Id
+								:</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userEmail"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userFirstname">Firstname
+								:</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userFirstname"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userLastname">Lastname
+								:</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userLastname"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userAddress">Address
+								:</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userAddress"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userDatecreated">Date
+								Created :</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userDatecreated"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userCreatedby">Created
+								By :</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userCreatedby"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userDatemodified">Date
+								Modified :</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userDatemodified"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-end">
+							<label class="control-label fs-5" for="userModifiedby">Modified
+								By :</label>
+						</div>
+						<div class="col-md-8 text-start">
+							<p class="fs-5" id="userModifiedby"></p>
+						</div>
+					</div>
+
+					<p class="text-center text-danger fw-bold mt-4 fs-5">You sure
+						you want to delete this user?</p>
+				</div>
+
+
+
+				<div class="modal-footer">
+					<div id="delbtnhere"></div>
+					<div id="deactivatebtnhere"></div>
+					<div id="activatebtnhere"></div>
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/index2.js}"></script>
+<!-- <script type="text/javascript" th:src="@{/js/index2.js}"></script> -->
+</html>

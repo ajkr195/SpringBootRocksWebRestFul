@@ -1,0 +1,163 @@
+
+.attention-text h4 {
+/*     margin-top: 1vh; */
+/*     margin-bottom: 2vh; */
+    font-size: 2rem;
+    font-weight: 900;
+    animation: letter 2s 1;
+}
+
+.sidenav {
+    font-size: 1.25rem;
+    position: fixed;
+    left: 0;
+    top: 50vh;
+    margin-top: -9rem;
+    border-radius: 2px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 5;
+}
+
+.sidelinks {
+    z-index: 20;
+    padding: 0.75rem 0.5rem 0.75rem 0.2rem;
+    border: 3px solid;
+    border-left: 2rem;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    background-color: white;
+    text-decoration: none;
+    color: inherit;
+    margin-left: -4rem;
+    max-width: 7.25rem;
+    transition: all 0.3s ease;
+}
+
+.sidelinks a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidelinks a:hover {
+	color: #ffff;
+	text-decoration: none;
+}
+
+.sidedwn {
+    color: black;
+    animation: rollup 0.2s 1;
+}
+
+.sidedwn:hover {
+    color: white !important;
+    background-color: #000000 !important;
+}
+
+.sidegit {
+    color: #fc6d26;
+    animation: rollup 0.4s 1;
+}
+
+.sidegit:hover {
+    color: white !important;
+    background-color: #fc6d26 !important;
+}
+
+.sidetele {
+    color: #0088cc !important;
+    animation: rollup 0.6s 1;
+}
+
+.sidetele:hover {
+    color: white !important;
+    background-color: #0088cc !important;
+}
+
+.sidetwit {
+    color: #00acee !important;
+    animation: rollup 0.8s 1;
+}
+
+.sidetwit:hover {
+    color: white !important;
+    background-color: #00acee !important;
+}
+
+.sidefb {
+    color: #0088cc !important;
+    animation: rollup 1s 1;
+}
+
+.sidefb:hover {
+    color: white !important;
+    background-color: #0088cc !important;
+}
+
+.hidden {
+    display: inline-block;
+    font-size: 0.8rem;
+    width: 4rem;
+}
+
+.sidenav~* {
+    padding-left: 1.85rem;
+}
+
+@media(hover:hover) {
+    @keyframes rolldown {
+        0% {
+            transform: translateY(-3rem);
+            opacity: 0;
+            filter: blur(3px);
+            margin-bottom: -3rem;
+        }
+        100% {
+            opacity: 1;
+            filter: blur(0.1px);
+        }
+    }
+    .sidelinks:hover {
+        margin-left: 0;
+        border: 1px solid;
+    }
+}
+
+@media(hover:none) {
+    @keyframes rolldown {
+        0% {
+            padding-top: 1.75rem;
+            opacity: 0;
+            filter: blur(3px);
+        }
+        100% {
+            opacity: 1;
+            filter: blur(0.1px);
+        }
+    }
+}
+
+@keyframes rollup {
+    0% {
+        transform: translateY(27.5rem);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(27.5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes letter {
+    0% {
+        letter-spacing: 2rem;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
