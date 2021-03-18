@@ -56,10 +56,11 @@
 		<div class="row">
 			<div class="card">
 
-				<div class="card-header text-center text-danger">
+				<div class="card-header text-center text-info">
 					<div class="attention-text">
 						<h4>Add/Edit User Form</h4>
 					</div>
+					<div id="error" class="error"></div>
 				</div>
 
 				<div class="card-body">
@@ -68,7 +69,7 @@
 						<div class="row mb-3">
 							<div class="col">
 								<input type="text" class="form-control" placeholder="Id"
-									aria-label="username" name="userid" id="userid" readonly />
+									aria-label="userid" name="userid" id="userid" readonly />
 							</div>
 							<div class="col">
 								<input type="text" class="form-control" placeholder="Username"
@@ -111,7 +112,7 @@
 							</div>
 						</div>
 						<div class="row mt-4 mb-3">
-							<button class="btn btn-danger fw-bold" id="formsubmitbutton"
+							<button class="btn btn-info fw-bold" id="formsubmitbutton"
 								type="submit">
 								<i class="fas fa-check-double fa-2x"></i> Submit
 							</button>
@@ -124,7 +125,7 @@
 
 		<div class="row mt-4">
 			<div class="card">
-				<div class="card-header text-center text-danger">
+				<div class="card-header text-center text-info">
 					<div
 						class="d-flex align-items-center justify-content-between attention-text">
 						<h4 class="float-start">AppUsers</h4>
@@ -136,18 +137,80 @@
 						</h4>
 
 
-						<a class="btn btn-danger float-end" href="/index3" th:href="@{/index3}">
-							Option3</a>
+						<a class="btn btn-info float-end" href="/" th:href="@{/}">
+							Option1</a>
 					</div>
 				</div>
 				<div class="card-body">
-					<div class="d-flex justify-content-center">
-						<div class="spinner-border" role="status" id="loading">
-							<!--<span class="sr-only">Please wait....</span> -->
-						</div>
-					</div>
 					<div class="table-responsive">
-						<table class="table table-sm" id="appusers"></table>
+						<table class="table table-sm" id="appusers">
+							<thead class="success">
+								<tr>
+									<th>UserID</th>
+									<th>Username</th>
+									<th>Email</th>
+									<th>Firstname</th>
+									<th>Lastname</th>
+									<th>Address</th>
+									<th>Active</th>
+									<th>Token</th>
+									<!-- 										<th>DateCreated</th> -->
+									<!-- 										<th>CreatedBy</th> -->
+									<!-- 										<th>LastModified</th> -->
+									<!-- 										<th>ModifiedBy</th> -->
+									<th>Actions</th>
+
+								</tr>
+							</thead>
+							<tbody class="tbody">
+
+								<tr th:each="user, userStat : ${users}">
+									<td th:class="${'userid_'+ user.id}" th:text="${user.id}"></td>
+									<td th:class="${'username_'+ user.id}"
+										th:text="${user.username}"></td>
+									<td th:class="${'useremail_'+ user.id}"
+										th:text="${user.useremail}"></td>
+									<td th:class="${'userfirstname_'+ user.id}"
+										th:text="${user.userfirstname}"></td>
+									<td th:class="${'userlastname_'+ user.id}"
+										th:text="${user.userlastname}"></td>
+									<td th:class="${'useraddress_'+ user.id}"
+										th:text="${user.useraddress}"></td>
+									<td th:class="${'userenabled_'+ user.id}"
+										th:text="${user.userenabled}"></td>
+									<td th:class="${'userconfirmationtoken_'+ user.id}"
+										th:text="${user.userconfirmationtoken}"></td>
+									<!-- 										<td th:class="${'userdatecreated_'+ user.id}" th:text="${user.createdDate}"></td>  deleteUser  -->
+									<!-- 										<td th:class="${'usercreatedby_'+ user.id}" th:text="${user.createdBy}"></td> -->
+									<!-- 										<td th:class="${'userdatemodified_'+ user.id}" th:text="${user.lastModifiedDate}"></td> -->
+									<!-- 										<td th:class="${'usermodifiedby_'+ user.id}" th:text="${user.lastModifiedBy}"></td> -->
+
+									<td><div class="btn-group">
+											<a class="btn btn-sm btn-success mx-1"
+												th:href="@{|/api/activateUser/| + ${user.id} }"
+												onClick="activateUser(this);event.preventDefault();"><i
+												class="fas fa-heartbeat"></i></a> <a
+												class="btn btn-sm btn-secondary mx-1"
+												th:href="@{|/api/deActivateUser/| + ${user.id} }"
+												onClick="deActivateUser(this);event.preventDefault();"><i
+												class="fas fa-skull-crossbones"></i></a> <a
+												class="btn btn-sm btn-danger mx-1"
+												th:href="@{|/api/deleteUser/| + ${user.id} }"
+												onClick="deleteUser(this);event.preventDefault();"><i
+												class="far fa-trash-alt"></i></a> <a
+												class="btn btn-sm btn-info mx-1" data-bs-toggle="modal"
+												data-bs-target="#exampleModal" id="viewdetailsbtn"
+												th:data-parameter1="${user.id}"
+												onclick="displayUsers(this.getAttribute('data-parameter1'));"><i
+												class="far fa-times-circle"></i></a> <a
+												class="btn btn-sm btn-warning" onclick="onEdit(this)"><i
+												class="fas fa-user-edit"></i></a>
+										</div></td>
+								</tr>
+
+							</tbody>
+
+						</table>
 					</div>
 				</div>
 
@@ -156,6 +219,7 @@
 		</div>
 
 	</div>
+
 
 
 	<div id="exampleModal" class="modal fade" data-bs-backdrop="static"
@@ -277,9 +341,10 @@
 			</div>
 		</div>
 	</div>
+
+
 </body>
 <script type="text/javascript"
 	th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/index2.js}"></script>
-<!-- <script type="text/javascript" th:src="@{/js/index2.js}"></script> -->
+<script type="text/javascript" th:src="@{/js/index4.js}"></script>
 </html>
