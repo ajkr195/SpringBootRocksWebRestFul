@@ -107,9 +107,17 @@ async function deleteUser(obj) {
 		var table = document.getElementById("appusers");
 		row = obj.parentElement.parentElement;
 		table.deleteRow(row.rowIndex);
-	} else {
-		alert(response.status + "Error Occurred.. !!");
 	}
+
+	if (response.status == 404) {
+		//response.status is 404 here
+		alert("Record Not Found !!");
+	}
+	
+	if (response.status > 404 && response.status < 600) {
+		alert(response.status + " - Error Occurred.. !!");
+	}
+
 }
 
 async function deleteAppUser(id) {
